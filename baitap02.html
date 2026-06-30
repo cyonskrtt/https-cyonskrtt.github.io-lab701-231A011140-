@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tập 2 — Form đăng ký</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><span class="accent">~</span> / baitap02</div>
+    <h1>Bài tập 2 — Form đăng ký tài khoản</h1>
+    <p class="muted">Validate đầy đủ dữ liệu, lưu thông tin hợp lệ vào LocalStorage.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:520px;">
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot red"></span><span class="tdot yellow"></span><span class="tdot green"></span>
+        <span class="tlabel">register.form</span>
+      </div>
+      <div class="terminal-body" style="font-family: var(--font-body);">
+
+        <div class="alert alert-success" id="successAlert">✔ Đăng ký thành công! Dữ liệu đã được lưu vào LocalStorage.</div>
+        <div class="alert alert-error" id="errorAlert">✘ Vui lòng kiểm tra lại các trường thông tin bên dưới.</div>
+
+        <form id="registerForm" novalidate>
+          <div class="field">
+            <label for="fullname">Họ và tên</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A">
+            <div class="error-msg" id="fullnameError">Vui lòng nhập họ tên (ít nhất 2 ký tự).</div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="ban@email.com">
+            <div class="error-msg" id="emailError">Email không hợp lệ.</div>
+          </div>
+
+          <div class="field">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" placeholder="Tối thiểu 6 ký tự">
+            <div class="error-msg" id="passwordError">Mật khẩu phải có ít nhất 6 ký tự.</div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="agree" name="agree">
+            <label for="agree" style="margin:0;">Tôi đồng ý với điều khoản sử dụng</label>
+          </div>
+          <div class="error-msg" id="agreeError" style="margin-top:-12px;">Bạn cần đồng ý với điều khoản trước khi đăng ký.</div>
+
+          <button type="submit" class="btn btn-solid btn-block">Đăng ký</button>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <h3 style="font-size:0.95rem;">Tài khoản đã lưu trong LocalStorage</h3>
+      <div id="savedList" class="muted" style="font-size:0.88rem; font-family: var(--font-display);">Chưa có tài khoản nào.</div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">© 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến</div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  const form = document.getElementById('registerForm');
+  const fullname = document.getElementById('fullname');
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  const agree = document.getElementById('agree');
+  const successAlert = document.getElementById('successAlert');
+  const errorAlert = document.getElementById('errorAlert');
+  const savedList = document.getElementById('savedList');
+
+  const STORAGE_KEY = 'baitap02_users';
+
+  function showError(input, errorId, condition) {
+    const errEl = document.getElementById(errorId);
+    if (condition) {
+      input.classList.add('invalid');
+      errEl.classList.add('show');
+    } else {
+      input.classList.remove('invalid');
+      errEl.classList.remove('show');
+    }
+    return condition;
+  }
+
+  function validate() {
+    let hasError = false;
+
+    const nameInvalid = fullname.value.trim().length < 2;
+    if (showError(fullname, 'fullnameError', nameInvalid)) hasError = true;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailInvalid = !emailPattern.test(email.value.trim());
+    if (showError(email, 'emailError', emailInvalid)) hasError = true;
+
+    const passInvalid = password.value.length < 6;
+    if (showError(password, 'passwordError', passInvalid)) hasError = true;
+
+    const agreeError = document.getElementById('agreeError');
+    if (!agree.checked) {
+      agreeError.classList.add('show');
+      hasError = true;
+    } else {
+      agreeError.classList.remove('show');
+    }
+
+    return !hasError;
+  }
+
+  function loadUsers() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  }
+
+  function renderSaved() {
+    const users = loadUsers();
+    if (users.length === 0) {
+      savedList.textContent = 'Chưa có tài khoản nào.';
+      return;
+    }
+    savedList.innerHTML = users.map(u => `→ ${u.fullname} &lt;${u.email}&gt;`).join('<br>');
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    successAlert.classList.remove('show');
+    errorAlert.classList.remove('show');
+
+    const isValid = validate();
+
+    if (!isValid) {
+      errorAlert.classList.add('show');
+      return;
+    }
+
+    const users = loadUsers();
+    users.push({
+      fullname: fullname.value.trim(),
+      email: email.value.trim(),
+      // Lưu ý: thực tế không nên lưu mật khẩu thô vào LocalStorage,
+      // đây chỉ là bài tập minh hoạ cho mục đích học tập.
+      password: password.value
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+
+    successAlert.classList.add('show');
+    form.reset();
+    renderSaved();
+  });
+
+  renderSaved();
+</script>
+</body>
+</html>

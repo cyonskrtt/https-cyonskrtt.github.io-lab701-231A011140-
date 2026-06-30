@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề Thi Lập Trình Web Số 1 — Nguyễn Văn Khải</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Lập Trình Web · Đề thi số 1</div>
+      <h1>Xây dựng giao diện web<br><span class="accent type-cursor">an toàn &amp; hiện đại</span></h1>
+      <p class="hero-sub">
+        Bài thi thực hành HTML, CSS, JavaScript thuần — thực hiện bởi sinh viên ngành
+        An toàn Thông tin, trường Đại học Văn Hiến. Toàn bộ bài tập được tổ chức rõ ràng
+        theo từng trang, dễ kiểm tra và dễ chấm điểm.
+      </p>
+      <div class="hero-actions">
+        <a href="theory.html" class="btn btn-solid">Xem lý thuyết →</a>
+        <a href="attendance.html" class="btn">Trang điểm danh</a>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot red"></span><span class="tdot yellow"></span><span class="tdot green"></span>
+        <span class="tlabel">whoami.sh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="prompt-line"><span class="prompt">$</span> <span class="cmd">whoami</span></p>
+        <p style="color:#fff;margin:4px 0 14px;">Nguyễn Văn Khải</p>
+        <p class="prompt-line"><span class="prompt">$</span> <span class="cmd">cat student.json</span></p>
+        <p style="margin:4px 0 0;">{</p>
+        <p style="margin:0 0 0 16px;">"mssv": "231A011140",</p>
+        <p style="margin:0 0 0 16px;">"dob": "14/04/2005",</p>
+        <p style="margin:0 0 0 16px;">"class": "Năm 3 - ĐH Văn Hiến",</p>
+        <p style="margin:0 0 0 16px;">"major": "An toàn Thông tin"</p>
+        <p style="margin:0;">}</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Nội dung bài thi</div>
+    <h2 style="margin-bottom:28px;">4 bài tập thực hành + phần lý thuyết</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-num">01 / SẢN PHẨM</div>
+        <h3 style="font-size:1.05rem;">Danh sách &amp; tìm kiếm</h3>
+        <p class="muted" style="font-size:0.92rem;">Render danh sách sản phẩm từ mảng JS, tìm kiếm realtime không phân biệt hoa thường.</p>
+        <a href="baitap01.html" class="btn" style="margin-top:8px;">Mở bài tập</a>
+      </div>
+      <div class="card">
+        <div class="card-num">02 / FORM</div>
+        <h3 style="font-size:1.05rem;">Đăng ký &amp; Validate</h3>
+        <p class="muted" style="font-size:0.92rem;">Form đăng ký với kiểm tra dữ liệu đầy đủ, lưu vào LocalStorage.</p>
+        <a href="baitap02.html" class="btn" style="margin-top:8px;">Mở bài tập</a>
+      </div>
+      <div class="card">
+        <div class="card-num">03 / TIMER</div>
+        <h3 style="font-size:1.05rem;">Đếm ngược 10 phút</h3>
+        <p class="muted" style="font-size:0.92rem;">Đồng hồ đếm ngược MM:SS, cảnh báo màu khi dưới 1 phút.</p>
+        <a href="baitap03.html" class="btn" style="margin-top:8px;">Mở bài tập</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div class="eyebrow">Phần lý thuyết</div>
+        <h3 style="margin:0;">4 câu hỏi lý thuyết kèm ví dụ minh hoạ</h3>
+      </div>
+      <a href="theory.html" class="btn btn-solid">Đọc lý thuyết →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    © 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tập 3 — Đếm ngược 10 phút</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><span class="accent">~</span> / baitap03</div>
+    <h1>Bài tập 3 — Đồng hồ đếm ngược</h1>
+    <p class="muted">Đếm ngược 10 phút, định dạng MM:SS, chuyển màu cảnh báo khi dưới 1 phút.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:560px;">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot red"></span><span class="tdot yellow"></span><span class="tdot green"></span>
+        <span class="tlabel">countdown.exe</span>
+      </div>
+      <div class="terminal-body" style="font-family: var(--font-body);">
+        <div class="countdown-wrap">
+          <div class="countdown-display" id="display">10:00</div>
+          <div class="countdown-bar"><div class="countdown-bar-fill" id="barFill"></div></div>
+          <div class="countdown-controls">
+            <button class="btn btn-solid" id="startBtn">▶ Bắt đầu</button>
+            <button class="btn" id="pauseBtn">⏸ Tạm dừng</button>
+            <button class="btn" id="resetBtn">↺ Đặt lại</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">© 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến</div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  const TOTAL_SECONDS = 10 * 60; // 10 phút
+  let remaining = TOTAL_SECONDS;
+  let timerId = null;
+
+  const display = document.getElementById('display');
+  const barFill = document.getElementById('barFill');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function format(sec) {
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const s = (sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function render() {
+    display.textContent = format(remaining);
+    const pct = (remaining / TOTAL_SECONDS) * 100;
+    barFill.style.width = pct + '%';
+
+    const isDanger = remaining <= 60 && remaining > 0;
+    display.classList.toggle('danger', isDanger);
+    barFill.classList.toggle('danger', isDanger);
+  }
+
+  function tick() {
+    if (remaining <= 0) {
+      clearInterval(timerId);
+      timerId = null;
+      render();
+      alert('⏰ Hết giờ!');
+      return;
+    }
+    remaining--;
+    render();
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (timerId || remaining <= 0) return;
+    timerId = setInterval(tick, 1000);
+  });
+
+  pauseBtn.addEventListener('click', () => {
+    clearInterval(timerId);
+    timerId = null;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(timerId);
+    timerId = null;
+    remaining = TOTAL_SECONDS;
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

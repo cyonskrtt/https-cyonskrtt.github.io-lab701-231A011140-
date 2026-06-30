@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tập 1 — Danh sách sản phẩm</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><span class="accent">~</span> / baitap01</div>
+    <h1>Bài tập 1 — Danh sách &amp; Tìm kiếm sản phẩm</h1>
+    <p class="muted">Dữ liệu sản phẩm lấy từ mảng JavaScript, tìm kiếm realtime không phân biệt hoa thường.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    <div class="search-bar">
+      <span class="icon">🔍</span>
+      <input type="search" id="searchInput" placeholder="Tìm sản phẩm theo tên… (vd: laptop, bàn phím)" autocomplete="off">
+    </div>
+
+    <div class="grid-3" id="productGrid"></div>
+
+    <div class="empty-state" id="emptyState">
+      <div class="glyph">∅</div>
+      <p>Không tìm thấy sản phẩm nào phù hợp.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">© 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến</div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  // Mảng dữ liệu sản phẩm (≥ 5 sản phẩm)
+  const products = [
+    { name: "Laptop Dell XPS 13", price: 28990000, category: "Laptop" },
+    { name: "Bàn phím cơ Keychron K8", price: 1690000, category: "Phụ kiện" },
+    { name: "Chuột không dây Logitech MX Master 3", price: 2190000, category: "Phụ kiện" },
+    { name: "Màn hình LG UltraGear 27 inch", price: 6490000, category: "Màn hình" },
+    { name: "Tai nghe chống ồn Sony WH-1000XM5", price: 7990000, category: "Âm thanh" },
+    { name: "Ổ cứng SSD Samsung 1TB", price: 1990000, category: "Linh kiện" },
+    { name: "Webcam Logitech C920", price: 1390000, category: "Phụ kiện" },
+    { name: "Router Wifi TP-Link AX3000", price: 1590000, category: "Mạng" },
+  ];
+
+  const grid = document.getElementById('productGrid');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+
+  function formatPrice(n) {
+    return n.toLocaleString('vi-VN') + ' đ';
+  }
+
+  function renderProducts(list) {
+    grid.innerHTML = '';
+    if (list.length === 0) {
+      emptyState.classList.add('show');
+      return;
+    }
+    emptyState.classList.remove('show');
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="pcat">${p.category}</div>
+        <div class="ptitle">${p.name}</div>
+        <div class="pprice">${formatPrice(p.price)}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Tìm kiếm realtime, không phân biệt hoa thường
+  searchInput.addEventListener('input', () => {
+    const keyword = searchInput.value.trim().toLowerCase();
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(keyword) ||
+      p.category.toLowerCase().includes(keyword)
+    );
+    renderProducts(filtered);
+  });
+
+  renderProducts(products);
+</script>
+</body>
+</html>

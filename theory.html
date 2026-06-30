@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lý thuyết — Đề thi số 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><span class="accent">~</span> / theory</div>
+    <h1>Phần Lý Thuyết</h1>
+    <p class="muted">4 câu hỏi lý thuyết — mỗi câu kèm giải thích và ví dụ minh hoạ.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:840px;">
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="q-num">Câu 1</span>
+        <h3>Sự khác biệt giữa <code>let</code>, <code>const</code> và <code>var</code> trong JavaScript?</h3>
+      </div>
+      <div class="qa-a">
+        <p><strong>var</strong> có phạm vi function-scope, có thể khai báo lại và bị "hoisting" (đưa lên đầu) kèm giá trị
+        <code>undefined</code>. <strong>let</strong> và <strong>const</strong> có phạm vi block-scope (chỉ tồn tại trong
+        cặp <code>{}</code> chứa nó), không thể khai báo lại trong cùng scope. Khác biệt giữa <code>let</code> và
+        <code>const</code>: biến khai báo bằng <code>const</code> không thể gán lại giá trị sau khi khởi tạo (riêng object/array
+        vẫn có thể thay đổi nội dung bên trong).</p>
+        <div class="example">// var: bị hoisting, function-scope
+console.log(a); // undefined
+var a = 10;
+
+// let: block-scope, có thể gán lại
+let b = 5;
+b = 8; // hợp lệ
+
+// const: không thể gán lại
+const c = 1;
+c = 2; // ❌ Lỗi: Assignment to constant variable</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="q-num">Câu 2</span>
+        <h3>Box Model trong CSS là gì? Nêu thứ tự các thành phần.</h3>
+      </div>
+      <div class="qa-a">
+        <p>Box Model mô tả cách trình duyệt tính toán kích thước và khoảng cách của mỗi phần tử HTML, gồm 4 lớp tính
+        từ trong ra ngoài: <strong>content</strong> (nội dung) → <strong>padding</strong> (khoảng đệm bên trong) →
+        <strong>border</strong> (viền) → <strong>margin</strong> (khoảng cách bên ngoài). Thuộc tính
+        <code>box-sizing: border-box</code> giúp padding và border được tính vào trong chiều rộng/cao đã khai báo,
+        tránh việc phần tử bị "phình" to hơn dự kiến.</p>
+        <div class="example">.box {
+  width: 200px;
+  padding: 20px;
+  border: 2px solid #39ff8e;
+  margin: 10px;
+  box-sizing: border-box; /* width tổng = 200px, không cộng dồn */
+}</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="q-num">Câu 3</span>
+        <h3>Sự khác nhau giữa Flexbox và Grid trong CSS?</h3>
+      </div>
+      <div class="qa-a">
+        <p><strong>Flexbox</strong> là hệ thống bố cục một chiều (one-dimensional), phù hợp để sắp xếp các phần tử
+        theo hàng hoặc cột, tự co giãn theo không gian còn lại — thường dùng cho thanh menu, danh sách card theo hàng.
+        <strong>Grid</strong> là hệ thống bố cục hai chiều (two-dimensional), cho phép kiểm soát đồng thời cả hàng
+        và cột, phù hợp cho bố cục trang tổng thể (header, sidebar, content, footer) hoặc lưới sản phẩm phức tạp.</p>
+        <div class="example">/* Flexbox: sắp xếp theo 1 chiều */
+.menu { display: flex; gap: 12px; }
+
+/* Grid: sắp xếp theo lưới 2 chiều */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 64px 1fr 80px;
+}</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="q-num">Câu 4</span>
+        <h3>LocalStorage là gì? Khác gì với SessionStorage và Cookie?</h3>
+      </div>
+      <div class="qa-a">
+        <p><strong>LocalStorage</strong> là bộ nhớ lưu trữ dữ liệu dạng key-value ngay trên trình duyệt, dữ liệu
+        <strong>không bị mất</strong> khi đóng tab hoặc tắt trình duyệt, dung lượng khoảng 5–10MB.
+        <strong>SessionStorage</strong> hoạt động tương tự nhưng dữ liệu chỉ tồn tại trong phiên làm việc của tab đó,
+        mất khi đóng tab. <strong>Cookie</strong> có dung lượng nhỏ hơn nhiều (~4KB), được gửi kèm theo mỗi request lên
+        server, và có thể đặt thời gian hết hạn cụ thể — thường dùng cho phiên đăng nhập, xác thực.</p>
+        <div class="example">// Lưu dữ liệu
+localStorage.setItem("user", JSON.stringify({ name: "Khải" }));
+
+// Đọc dữ liệu
+const user = JSON.parse(localStorage.getItem("user"));
+
+// Xoá dữ liệu
+localStorage.removeItem("user");</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">© 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tập 19 — Đèn kéo quân</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .lantern-frame-wrap {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface-solid);
+  }
+  .lantern-frame-wrap iframe {
+    width: 100%;
+    height: 70vh;
+    border: 0;
+    display: block;
+  }
+  .lantern-fallback {
+    text-align: center;
+    padding: 40px 20px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">$</span> khai<span class="dot">@</span>vanhien</a>
+    <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="theory.html">Lý thuyết</a></li>
+      <li><a href="baitap01.html">Bài tập 1</a></li>
+      <li><a href="baitap02.html">Bài tập 2</a></li>
+      <li><a href="baitap03.html">Bài tập 3</a></li>
+      <li><a href="baitap18.html">Bài tập 18</a></li>
+      <li><a href="baitap19.html">Bài tập 19</a></li>
+      <li><a href="contact.html">Liên hệ</a></li>
+      <li><a href="attendance.html">Điểm danh</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><span class="accent">~</span> / baitap19</div>
+    <h1>Bài tập 19 — Đèn kéo quân</h1>
+    <p class="muted">Bài tập giữa kỳ: trang "Đèn kéo quân" tích hợp portfolio, được deploy riêng trên Netlify.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:900px;">
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot red"></span><span class="tdot yellow"></span><span class="tdot green"></span>
+        <span class="tlabel">lantern.live</span>
+      </div>
+      <div class="terminal-body">
+        <p class="prompt-line" style="margin-bottom: 16px;">
+          <span class="prompt">$</span> <span class="cmd">open</span> https://projectnvk.netlify.app/lantern
+        </p>
+
+        <div class="lantern-frame-wrap">
+          <iframe
+            src="https://projectnvk.netlify.app/lantern"
+            title="Đèn kéo quân — Nguyễn Văn Khải"
+            loading="lazy">
+          </iframe>
+        </div>
+
+        <div class="lantern-fallback">
+          <p class="muted" style="margin-bottom: 16px;">
+            Nếu nội dung phía trên không hiển thị (do trình duyệt chặn nhúng trang), bấm nút bên dưới để mở trực tiếp:
+          </p>
+          <a href="https://projectnvk.netlify.app/lantern" target="_blank" rel="noopener" class="btn btn-solid">
+            Mở Đèn kéo quân — Nguyễn Văn Khải →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">© 2026 Nguyễn Văn Khải · MSSV 231A011140 · Đại học Văn Hiến</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
